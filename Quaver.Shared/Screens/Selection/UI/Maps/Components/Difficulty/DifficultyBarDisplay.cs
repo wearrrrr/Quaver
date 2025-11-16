@@ -34,7 +34,7 @@ namespace Quaver.Shared.Screens.Selection.UI.Maps.Components.Difficulty
             Size = halfSize ? new ScalableVector2(352, 21) : new ScalableVector2(704, 42);
             Alpha = displayBackground ? 1 : 0;
 
-            Container = new ScrollContainer(new ScalableVector2(0, Height), Size)
+            Container = new ScrollContainer(new ScalableVector2(0, Height), Size, true, true)
             {
                 Parent = this,
                 Alpha = 0

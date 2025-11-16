@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <Configurations>Debug;Release;Visual Tests</Configurations>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Visual Tests|AnyCPU'">
@@ -15,6 +15,7 @@
     <ProjectReference Include="../Quaver.API/Quaver.API/Quaver.API.csproj" />
     <ProjectReference Include="../Quaver.Dependencies/TimeAgo/TimeAgo/TimeAgo.csproj" />
     <ProjectReference Include="../Quaver.Resources/Quaver.Resources.csproj" />
+    <ProjectReference Include="../Wobble/KNI/Platforms/Kni.Platform.SDL2.GL.csproj" />
     <ProjectReference Include="../Wobble/Wobble.Extended/Wobble.Extended.csproj" />
     <ProjectReference Include="../Wobble/Wobble.Resources/Wobble.Resources.csproj" />
     <ProjectReference Include="../Wobble/Wobble/Wobble.csproj" />
@@ -64,7 +65,7 @@
     <PackageReference Include="Emik.Rubbish" Version="1.1.0" />
     <PackageReference Include="HoLLy.osu.DatabaseReader" Version="3.2.0" />
     <PackageReference Include="IniFileParserStandard" Version="1.0.1" />
-    <PackageReference Include="Microsoft.Win32.Registry" Version="4.7.0" />
+    <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
     <PackageReference Include="MoonSharp" Version="2.0.0" />
     <PackageReference Include="morelinq" Version="3.3.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

@@ -39,7 +39,7 @@ namespace Quaver.Shared.Screens.Theater
         /// </summary>
         public TheaterScreen()
         {
-            GameBase.Game.Window.FileDropped += OnFileDropped;
+            // GameBase.Game.Window.FileDropped += OnFileDropped;
             View = new TheaterScreenView(this);
         }
 
@@ -58,7 +58,7 @@ namespace Quaver.Shared.Screens.Theater
         /// </summary>
         public override void Destroy()
         {
-            GameBase.Game.Window.FileDropped -= OnFileDropped;
+            // GameBase.Game.Window.FileDropped -= OnFileDropped;
             ReplayLoaded = null;
 
             base.Destroy();

@@ -21,7 +21,7 @@ using IDrawable = Wobble.Graphics.IDrawable;
 
 namespace Quaver.Shared.Screens.Editor.Timing
 {
-    public class Metronome : IUpdate, IDisposable
+    public class Metronome : IUpdateable, IDisposable
     {
         /// <summary>
         /// </summary>
@@ -66,6 +66,14 @@ namespace Quaver.Shared.Screens.Editor.Timing
         ///     The amount of total beats in the last frame
         /// </summary>
         private int LastTotalBeats { get; set; }
+
+        public bool Enabled { get; }
+
+        public event EventHandler<EventArgs> EnabledChanged;
+
+        public int UpdateOrder { get; }
+
+        public event EventHandler<EventArgs> UpdateOrderChanged;
 
         /// <summary>
         /// </summary>

@@ -65,13 +65,16 @@ namespace Quaver.Shared.Screens.Gameplay.UI.Health
                     SamplerState = SamplerState.PointClamp,
                     DepthStencilState = DepthStencilState.Default,
                     RasterizerState = RasterizerState.CullNone,
-                    Shader = new Shader(GameBase.Game.Resources.Get("Quaver.Resources/Shaders/semi-transparent.mgfxo"), new Dictionary<string, object>()
-                    {
-                        {"p_position", new Vector2()},
-                        {"p_rectangle", new Vector2()},
-                        {"p_dimensions", new Vector2()},
-                        {"p_alpha", 0f}
+                    Shader = MainThreadDispatcher.RunOnMainThread(() => {
+                        return new Shader(GameBase.Game.Resources.Get("Quaver.Resources/Shaders/semi-transparent.mgfxo"), new Dictionary<string, object>()
+                        {
+                            {"p_position", new Vector2()},
+                            {"p_rectangle", new Vector2()},
+                            {"p_dimensions", new Vector2()},
+                            {"p_alpha", 0f}
+                        });
                     })
+
                 }
             };
 

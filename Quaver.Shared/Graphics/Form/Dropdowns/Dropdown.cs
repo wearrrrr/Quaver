@@ -371,7 +371,7 @@ namespace Quaver.Shared.Graphics.Form.Dropdowns
         /// <exception cref="NotImplementedException"></exception>
         private void OnClickedOutside(object sender, EventArgs e)
         {
-            var mousePoint = MouseManager.CurrentState.Position.ToPoint();
+            var mousePoint = MouseManager.CurrentState.Position;
 
             if (ItemContainer.ScreenRectangle.Contains(mousePoint) || ScreenRectangle.Contains(mousePoint))
                 return;

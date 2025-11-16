@@ -148,7 +148,7 @@ namespace Quaver.Shared.Screens.Selection.UI.Modifiers.Components
                     return;
             }
 
-            var color = ScreenRectangle.Contains(MouseManager.CurrentState.Position.ToPoint()) ? ColorHelper.HexToColor("#464545") : OriginalColor;
+            var color = ScreenRectangle.Contains(MouseManager.CurrentState.Position) ? ColorHelper.HexToColor("#464545") : OriginalColor;
             FadeToColor(color, gameTime.ElapsedGameTime.TotalMilliseconds, 30);
         }
 

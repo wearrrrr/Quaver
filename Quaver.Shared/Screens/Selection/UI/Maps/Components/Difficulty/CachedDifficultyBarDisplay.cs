@@ -68,8 +68,11 @@ namespace Quaver.Shared.Screens.Selection.UI.Maps.Components.Difficulty
             if (pixelHeight == 0)
                 pixelHeight = 1;
 
-            RenderTarget = new RenderTarget2D(GameBase.Game.GraphicsDevice, (int) pixelWidth, (int) pixelHeight, false,
-                GameBase.Game.GraphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.None);
+            RenderTarget = MainThreadDispatcher.RunOnMainThread(() =>
+            {
+                return new RenderTarget2D(GameBase.Game.GraphicsDevice, (int) pixelWidth, (int) pixelHeight, false,
+                    GameBase.Game.GraphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.None);
+            });
 
             NeedsToCache = true;
         }

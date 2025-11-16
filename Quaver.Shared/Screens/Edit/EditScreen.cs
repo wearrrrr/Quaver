@@ -409,7 +409,7 @@ namespace Quaver.Shared.Screens.Edit
 
             SkinManager.SkinLoaded += OnSkinLoaded;
             SkinManager.EditorSkinLoaded += OnEditorSkinLoaded;
-            GameBase.Game.Window.FileDropped += OnFileDropped;
+            // GameBase.Game.Window.FileDropped += OnFileDropped;
             ActionManager.TimingGroupRenamed += ActionManagerOnTimingGroupRenamed;
             ActionManager.TimingGroupDeleted += ActionManagerOnTimingGroupDeleted;
 
@@ -496,7 +496,7 @@ namespace Quaver.Shared.Screens.Edit
         public override void Destroy()
         {
             Track.Seeked -= OnTrackSeeked;
-            GameBase.Game.Window.FileDropped -= OnFileDropped;
+            // GameBase.Game.Window.FileDropped -= OnFileDropped;
             ActionManager.TimingGroupRenamed -= ActionManagerOnTimingGroupRenamed;
             ActionManager.TimingGroupDeleted -= ActionManagerOnTimingGroupDeleted;
             ReferenceDifficultyIndex.ValueChanged -= LoadReferenceDifficulty;
@@ -567,8 +567,9 @@ namespace Quaver.Shared.Screens.Edit
                 ConfigManager.Pitched.ValueChanged -= OnPitchedChanged;
 
             SkinManager.SkinLoaded -= OnSkinLoaded;
-            SkinManager.EditorSkinLoaded -= OnEditorSkinLoaded;
-            
+
+            Plugins.ForEach(x => x.Destroy());
+
             InputManager?.Destroy();
 
             base.Destroy();
@@ -882,22 +883,22 @@ namespace Quaver.Shared.Screens.Edit
             {
                 NotificationManager.Show(NotificationLevel.Warning, "You cannot recolor the default layer!");
                 return;
-            }     
+            }
             DialogManager.Show(new DialogChangeLayerColor(SelectedLayer.Value, ActionManager, WorkingMap));
         }
 
         #region TIMING_GROUPS
 
-        public void MoveSelectedNotesToCurrentTimingGroup() => 
+        public void MoveSelectedNotesToCurrentTimingGroup() =>
             ActionManager.MoveObjectsToTimingGroup(SelectedHitObjects.Value, SelectedScrollGroupId);
 
-        
+
         public string AddNewTimingGroup()
         {
             var newGroupId = EditorPluginUtils.GenerateTimingGroupId();
 
             var rgb = ColorGenerator.NextColor(
-                WorkingMap.TimingGroups.Select(t => 
+                WorkingMap.TimingGroups.Select(t =>
                     ColorHelper.ToXnaColor(t.Value.GetColor())
                     ).ToHashSet());
 
@@ -909,7 +910,7 @@ namespace Quaver.Shared.Screens.Edit
                 ColorRgb = $"{rgb.R},{rgb.G},{rgb.B}"
             };
 
-            ActionManager.CreateTimingGroup(newGroupId, timingGroup, SelectedHitObjects.Value);                
+            ActionManager.CreateTimingGroup(newGroupId, timingGroup, SelectedHitObjects.Value);
             SelectedScrollGroupId = newGroupId;
 
             return newGroupId;
@@ -932,7 +933,7 @@ namespace Quaver.Shared.Screens.Edit
         public void RecolorTimingGroup() =>
             DialogManager.Show(new EditorChangeTimingGroupColorDialog(SelectedScrollGroupId, SelectedScrollGroup, ActionManager));
 
-        
+
         #endregion
 
         #endregion
@@ -1273,7 +1274,7 @@ namespace Quaver.Shared.Screens.Edit
                         // Remove the notes covered by this LN
                         var lnsAtTime = WorkingMap.HitObjects.Where(h =>
                                 h != heldLivemapHitObjectInfos[lane]
-                                && h.Lane == lane 
+                                && h.Lane == lane
                                 && heldLivemapHitObjectStartTime <= h.StartTime
                                 && h.StartTime <= time)
                             .ToList();
@@ -1918,7 +1919,7 @@ namespace Quaver.Shared.Screens.Edit
                     NotificationManager.Show(NotificationLevel.Error, "You cannot import the keymap you are already using!");
                     return;
                 }
-                DialogManager.Show(new YesNoDialog("APPLY KEYMAP", 
+                DialogManager.Show(new YesNoDialog("APPLY KEYMAP",
                     "Are you sure you want to overwrite your keymap?\nYou might want to back up your keymap first.",
                     () =>
                     {

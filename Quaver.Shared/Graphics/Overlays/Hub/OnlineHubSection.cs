@@ -13,7 +13,7 @@ using ColorHelper = Quaver.Shared.Helpers.ColorHelper;
 
 namespace Quaver.Shared.Graphics.Overlays.Hub
 {
-    public abstract class OnlineHubSection : IUpdate
+    public abstract class OnlineHubSection : IUpdateable
     {
         /// <summary>
         /// </summary>
@@ -35,6 +35,14 @@ namespace Quaver.Shared.Graphics.Overlays.Hub
         /// <summary>
         /// </summary>
         public bool IsUnread { get; private set; }
+
+        public bool Enabled { get; }
+
+        public event EventHandler<EventArgs> EnabledChanged;
+
+        public int UpdateOrder { get; }
+
+        public event EventHandler<EventArgs> UpdateOrderChanged;
 
         /// <summary>
         /// </summary>
@@ -127,9 +135,9 @@ namespace Quaver.Shared.Graphics.Overlays.Hub
             }
         }
 
-        /// <summary>
-        /// </summary>
-        public void MarkAsUnread() => IsUnread = true;
+    /// <summary>
+    /// </summary>
+    public void MarkAsUnread() => IsUnread = true;
 
         /// <summary>
         /// </summary>

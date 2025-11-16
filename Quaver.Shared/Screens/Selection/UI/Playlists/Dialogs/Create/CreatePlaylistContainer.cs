@@ -136,7 +136,7 @@ namespace Quaver.Shared.Screens.Selection.UI.Playlists.Dialogs.Create
             CreateButtonCreate();
             CreateButtonCancel();
 
-            GameBase.Game.Window.FileDropped += OnFileDropped;
+            // GameBase.Game.Window.FileDropped += OnFileDropped;
         }
 
         /// <inheritdoc />
@@ -144,7 +144,7 @@ namespace Quaver.Shared.Screens.Selection.UI.Playlists.Dialogs.Create
         /// </summary>
         public override void Destroy()
         {
-            GameBase.Game.Window.FileDropped += OnFileDropped;
+            // GameBase.Game.Window.FileDropped += OnFileDropped;
 
             if (Banner.Image != UserInterface.DefaultBanner)
                 Banner.Image.Dispose();

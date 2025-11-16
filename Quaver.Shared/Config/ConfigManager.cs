@@ -1006,7 +1006,6 @@ namespace Quaver.Shared.Config
             }
 
             var data = new IniFileParser.IniFileParser(new ConcatenateDuplicatedKeysIniDataParser()).ReadFile(configFilePath, Encoding.UTF8)["Config"];
-
             // Read / Set Config Values
             // NOTE: MAKE SURE TO SET THE VALUE TO AUTO-SAVE WHEN CHANGING! THIS ISN'T DONE AUTOMATICALLY.
             // YOU CAN DO THIS DOWN BELOW, AFTER THE CONFIG HAS WRITTEN FOR THE FIRST TIME.
@@ -1068,6 +1067,45 @@ namespace Quaver.Shared.Config
             KeyNavigateDown = ReadValue(@"KeyNavigateDown", Keys.Down, data);
             KeyNavigateBack = ReadValue(@"KeyNavigateBack", Keys.Escape, data);
             KeyNavigateSelect = ReadValue(@"KeyNavigateSelect", Keys.Enter, data);
+            KeyMania4K1 = ReadGenericKey(@"KeyMania4K1", new GenericKey { KeyboardKey = Keys.A }, data);
+            KeyMania4K2 = ReadGenericKey(@"KeyMania4K2", new GenericKey { KeyboardKey = Keys.S }, data);
+            KeyMania4K3 = ReadGenericKey(@"KeyMania4K3", new GenericKey { KeyboardKey = Keys.K }, data);
+            KeyMania4K4 = ReadGenericKey(@"KeyMania4K4", new GenericKey { KeyboardKey = Keys.L }, data);
+            KeyMania7K1 = ReadGenericKey(@"KeyMania7K1", new GenericKey { KeyboardKey = Keys.A }, data);
+            KeyMania7K2 = ReadGenericKey(@"KeyMania7K2", new GenericKey { KeyboardKey = Keys.S }, data);
+            KeyMania7K3 = ReadGenericKey(@"KeyMania7K3", new GenericKey { KeyboardKey = Keys.D }, data);
+            KeyMania7K4 = ReadGenericKey(@"KeyMania7K4", new GenericKey { KeyboardKey = Keys.Space }, data);
+            KeyMania7K5 = ReadGenericKey(@"KeyMania7K5", new GenericKey { KeyboardKey = Keys.J }, data);
+            KeyMania7K6 = ReadGenericKey(@"KeyMania7K6", new GenericKey { KeyboardKey = Keys.K }, data);
+            KeyMania7K7 = ReadGenericKey(@"KeyMania7K7", new GenericKey { KeyboardKey = Keys.L }, data);
+            KeyCoop2P4K1 = ReadGenericKey(@"KeyCoop2P4K1", new GenericKey { KeyboardKey = Keys.Z }, data);
+            KeyCoop2P4K2 = ReadGenericKey(@"KeyCoop2P4K2", new GenericKey { KeyboardKey = Keys.X }, data);
+            KeyCoop2P4K3 = ReadGenericKey(@"KeyCoop2P4K3", new GenericKey { KeyboardKey = Keys.OemComma }, data);
+            KeyCoop2P4K4 = ReadGenericKey(@"KeyCoop2P4K4", new GenericKey { KeyboardKey = Keys.OemPeriod }, data);
+            KeyCoop2P7K1 = ReadGenericKey(@"KeyCoop2P7K1", new GenericKey { KeyboardKey = Keys.Z }, data);
+            KeyCoop2P7K2 = ReadGenericKey(@"KeyCoop2P7K2", new GenericKey { KeyboardKey = Keys.X }, data);
+            KeyCoop2P7K3 = ReadGenericKey(@"KeyCoop2P7K3", new GenericKey { KeyboardKey = Keys.C }, data);
+            KeyCoop2P7K4 = ReadGenericKey(@"KeyCoop2P7K4", new GenericKey { KeyboardKey = Keys.V }, data);
+            KeyCoop2P7K5 = ReadGenericKey(@"KeyCoop2P7K5", new GenericKey { KeyboardKey = Keys.M }, data);
+            KeyCoop2P7K6 = ReadGenericKey(@"KeyCoop2P7K6", new GenericKey { KeyboardKey = Keys.OemComma }, data);
+            KeyCoop2P7K7 = ReadGenericKey(@"KeyCoop2P7K7", new GenericKey { KeyboardKey = Keys.OemPeriod }, data);
+
+            KeyLayout4KScratch1 = ReadGenericKey(@"KeyLayout4KScratch1", new GenericKey { KeyboardKey = Keys.A }, data);
+            KeyLayout4KScratch2 = ReadGenericKey(@"KeyLayout4KScratch2", new GenericKey { KeyboardKey = Keys.S }, data);
+            KeyLayout4KScratch3 = ReadGenericKey(@"KeyLayout4KScratch3", new GenericKey { KeyboardKey = Keys.D }, data);
+            KeyLayout4KScratch4 = ReadGenericKey(@"KeyLayout4KScratch4", new GenericKey { KeyboardKey = Keys.K }, data);
+            KeyLayout4KScratch5 = ReadGenericKey(@"KeyLayout4KScratch5", new GenericKey { KeyboardKey = Keys.L }, data);
+
+            KeyLayout7KScratch1 = ReadGenericKey(@"KeyLayout7KScratch1", new GenericKey { KeyboardKey = Keys.A }, data);
+            KeyLayout7KScratch2 = ReadGenericKey(@"KeyLayout7KScratch2", new GenericKey { KeyboardKey = Keys.S }, data);
+            KeyLayout7KScratch3 = ReadGenericKey(@"KeyLayout7KScratch3", new GenericKey { KeyboardKey = Keys.D }, data);
+            KeyLayout7KScratch4 = ReadGenericKey(@"KeyLayout7KScratch4", new GenericKey { KeyboardKey = Keys.Space }, data);
+            KeyLayout7KScratch5 = ReadGenericKey(@"KeyLayout7KScratch5", new GenericKey { KeyboardKey = Keys.J }, data);
+            KeyLayout7KScratch6 = ReadGenericKey(@"KeyLayout7KScratch6", new GenericKey { KeyboardKey = Keys.K }, data);
+            KeyLayout7KScratch7 = ReadGenericKey(@"KeyLayout7KScratch7", new GenericKey { KeyboardKey = Keys.L }, data);
+            KeyLayout7KScratch8 = ReadGenericKey(@"KeyLayout7KScratch8", new GenericKey { KeyboardKey = Keys.CapsLock }, data);
+            KeyLayout7KScratch9 = ReadGenericKey(@"KeyLayout7KScratch9", new GenericKey { KeyboardKey = Keys.OemSemicolon }, data);
+
             KeySkipIntro = ReadGenericKey(@"KeySkipIntro", new GenericKey { KeyboardKey = Keys.Space }, data);
             KeyPause = ReadGenericKey(@"KeyPause", new GenericKey { KeyboardKey = Keys.Escape }, data);
             KeyToggleOverlay = ReadValue(@"KeyToggleOverlay", Keys.F8, data);
@@ -1233,7 +1271,7 @@ namespace Quaver.Shared.Config
             if (string.IsNullOrEmpty(Username.Value))
                 Username.Value = "Player";
 
-            WriteConfigFileAsync().Wait();
+            WriteConfigFileAsync().ConfigureAwait(false);
         }
 
         /// <summary>

@@ -7,7 +7,7 @@ using Quaver.Shared.Screens.Selection.UI.FilterPanel.Search;
 using Quaver.Shared.Screens.Selection.UI.Mapsets;
 using Quaver.Shared.Screens.Tests.UI.Borders;
 using Wobble.Bindables;
-using Wobble.Extended.HotReload.Screens;
+// using Wobble.Extended.HotReload.Screens;
 using Wobble.Screens;
 
 namespace Quaver.Shared.Screens.Tests.FilterPanel

@@ -179,12 +179,15 @@ namespace Quaver.Shared.Graphics.Menu.Border.Components.Users
         private void CreateAvatar()
         {
             const float scale = 0.60f;
-
-            Avatar = new CircleAvatar(new ScalableVector2(Height * scale, Height * scale), GetAvatar())
+            MainThreadDispatcher.RunOnMainThread(() =>
             {
-                Parent = this,
-                Alignment = Alignment.MidLeft,
-            };
+                Avatar = new CircleAvatar(new ScalableVector2(Height * scale, Height * scale), GetAvatar())
+                {
+                    Parent = this,
+                    Alignment = Alignment.MidLeft,
+                };
+                return Avatar;
+            });
         }
 
         /// <summary>

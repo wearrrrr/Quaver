@@ -22,6 +22,7 @@ using Steamworks;
 using Wobble;
 using Wobble.Logging;
 using Wobble.Platform.Linux;
+using System.Threading;
 
 namespace Quaver.Shared.Online
 {
@@ -352,9 +353,12 @@ namespace Quaver.Shared.Online
                     ret = SteamUtils.GetImageRGBA(icon, rgba, rgba.Length);
                     if (ret)
                     {
-                        var texture = new Texture2D(GameBase.Game.GraphicsDevice, (int)width, (int)height, false, SurfaceFormat.Color);
-                        texture.SetData(rgba, 0, rgba.Length);
-                        return texture;
+                        MainThreadDispatcher.RunOnMainThread(() =>
+                        {
+                            var texture = new Texture2D(GameBase.Game.GraphicsDevice, (int)width, (int)height, false, SurfaceFormat.Color);
+                            texture.SetData(rgba, 0, rgba.Length);
+                            return texture;
+                        });
                     }
                 }
             }

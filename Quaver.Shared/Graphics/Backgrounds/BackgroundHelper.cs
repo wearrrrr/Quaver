@@ -388,7 +388,9 @@ namespace Quaver.Shared.Graphics.Backgrounds
                 image.Mutate(i => i.Resize(448, 252).Crop(new SixLabors.ImageSharp.Rectangle(0, 20, 421, 82)));
                 image.Save(outStream, format);
 
-                var img = Texture2D.FromStream(GameBase.Game.GraphicsDevice, outStream);
+                var img = MainThreadDispatcher.RunOnMainThread(() => {
+                    return Texture2D.FromStream(GameBase.Game.GraphicsDevice, outStream);
+                });
 
                 if (mapset != null)
                 {

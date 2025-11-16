@@ -35,7 +35,7 @@ namespace Quaver.Shared.Online.API.News
         }
 
         /// <summary>
-        ///     Loads the banner 
+        ///     Loads the banner
         /// </summary>
         private void LoadBanner(APIResponseNewsFeed feed)
         {
@@ -55,7 +55,12 @@ namespace Quaver.Shared.Online.API.News
                 using (var webClient = new WebClient())
                 {
                     using (var mem = new MemoryStream(webClient.DownloadData(latestPost.IngameThumbnail)))
-                        feed.RecentPostBanner = AssetLoader.LoadTexture2D(mem);
+                    {
+                        MainThreadDispatcher.RunOnMainThread(() =>
+                        {
+                            return feed.RecentPostBanner = AssetLoader.LoadTexture2D(mem);
+                        });
+                    }
                 }
             }
             catch (Exception e)

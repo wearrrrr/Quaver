@@ -107,8 +107,8 @@ using Wobble.Audio.Tracks;
 using Wobble.Bindables;
 using Wobble.Discord;
 using Wobble.Discord.RPC;
-using Wobble.Extended.HotReload;
-using Wobble.Extended.HotReload.Screens;
+// using Wobble.Extended.HotReload;
+// using Wobble.Extended.HotReload.Screens;
 using Wobble.Graphics;
 using Wobble.Graphics.UI.Debugging;
 using Wobble.Graphics.UI.Dialogs;
@@ -258,6 +258,8 @@ namespace Quaver.Shared
         {
             Content.RootDirectory = "Content";
 
+            MainThreadDispatcher.Initialize();
+
             if (Environment.GetEnvironmentVariable("QUAVER_LOGLEVEL") is null)
                 Logger.MinimumLogLevel = IsDeployedBuild ? LogLevel.Important : LogLevel.Debug;
         }
@@ -288,7 +290,7 @@ namespace Quaver.Shared
             Graphics.ApplyChanges();
 
             // Handle file dropped event.
-            Window.FileDropped += MapsetImporter.OnFileDropped;
+            // Window.FileDropped += MapsetImporter.OnFileDropped;
             Window.ClientSizeChanged += OnClientSizeChanged;
 
             DevicePeriod = ConfigManager.DevicePeriod.Value;
@@ -345,6 +347,8 @@ namespace Quaver.Shared
         {
             if (!IsReadyToUpdate)
                 return;
+
+            MainThreadDispatcher.ExecuteAll();
 
             base.Update(gameTime);
 
@@ -549,29 +553,29 @@ namespace Quaver.Shared
                 case FpsLimitType.Unlimited:
                     Graphics.SynchronizeWithVerticalRetrace = false;
                     IsFixedTimeStep = false;
-                    WaylandVsync = false;
+                    // WaylandVsync = false;
                     break;
                 case FpsLimitType.Limited:
                     Graphics.SynchronizeWithVerticalRetrace = false;
                     IsFixedTimeStep = true;
                     TargetElapsedTime = TimeSpan.FromSeconds(1d / 240d);
-                    WaylandVsync = false;
+                    // WaylandVsync = false;
                     break;
                 case FpsLimitType.Vsync:
                     Graphics.SynchronizeWithVerticalRetrace = true;
                     IsFixedTimeStep = false;
-                    WaylandVsync = false;
+                    // WaylandVsync = false;
                     break;
                 case FpsLimitType.WaylandVsync:
                     Graphics.SynchronizeWithVerticalRetrace = false;
                     IsFixedTimeStep = false;
-                    WaylandVsync = true;
+                    // WaylandVsync = true;
                     break;
                 case FpsLimitType.Custom:
                     Graphics.SynchronizeWithVerticalRetrace = false;
                     TargetElapsedTime = TimeSpan.FromSeconds(1d / customFpsLimit);
                     IsFixedTimeStep = true;
-                    WaylandVsync = false;
+                    // WaylandVsync = false;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

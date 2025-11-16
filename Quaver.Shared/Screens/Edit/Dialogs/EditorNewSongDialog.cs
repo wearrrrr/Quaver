@@ -17,12 +17,12 @@ namespace Quaver.Shared.Screens.Edit.Dialogs
             NoButton.Alignment = Alignment.BotCenter;
             NoButton.X = 0;
 
-            GameBase.Game.Window.FileDropped += OnFileDropped;
+            // GameBase.Game.Window.FileDropped += OnFileDropped;
         }
 
         public override void Destroy()
         {
-            GameBase.Game.Window.FileDropped -= OnFileDropped;
+            // GameBase.Game.Window.FileDropped -= OnFileDropped;
             base.Destroy();
         }
 
