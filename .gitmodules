@@ -6,7 +6,7 @@
 	url = https://github.com/Quaver/Quaver.Resources
 [submodule "Wobble"]
 	path = Wobble
-	url = https://github.com/Quaver/Wobble
+	url = https://github.com/wearrrrr/Wobble
 [submodule "Quaver.Dependencies"]
 	path = Quaver.Dependencies
 	url = https://github.com/Quaver/Quaver.Dependencies
