@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Microsoft.Xna.Framework.Media;
 using Quaver.API.Enums;
 using Quaver.API.Maps.Parsers;
 using Quaver.Shared.Config;

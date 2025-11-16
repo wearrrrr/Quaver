@@ -1,4 +1,3 @@
-using Microsoft.Xna.Framework.Media;
 using osu.Shared;
 using Quaver.API.Helpers;
 using Quaver.API.Maps.Processors.Scoring;

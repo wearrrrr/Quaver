@@ -27,9 +27,6 @@
     />
 
     <Reference Include="Quaver.Server.Client.dll" Condition="!Exists('../Quaver.Server.Client/Quaver.Server.Client/Quaver.Server.Client.csproj')"/>
-    <Reference Include="MonoGame.Framework">
-      <HintPath>..\Wobble\MonoGame.Framework.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Update="Content/**">

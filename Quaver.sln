@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeAgo", "Quaver.Dependenc
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{57D50BBE-44CF-4B6B-B2D0-E4C92355043F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGame.Framework.DesktopGL", "Wobble\KNI\Platforms\Kni.Platform.SDL2.GL.csproj", "{8ABEFEF3-86E3-453F-9243-D75D09F7A95B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGame.Framework.DesktopGL", "Wobble\kni\Platforms\Kni.Platform.SDL2.GL.csproj", "{8ABEFEF3-86E3-453F-9243-D75D09F7A95B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wobble.Extended", "Wobble\Wobble.Extended\Wobble.Extended.csproj", "{7EDF26D5-AE28-49E2-BA45-953B466A4CB0}"
 EndProject

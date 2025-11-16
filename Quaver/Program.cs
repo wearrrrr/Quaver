@@ -50,25 +50,25 @@ namespace Quaver
         public static void Main(string[] args)
         {
             // Prevents more than one instance of Quaver to run at a time
-            // using (var mutex = new Mutex(false, "Global\\" + Guid))
-            // {
-            //     if (!mutex.WaitOne(0, false))
-            //     {
-            //         Logger.Error("Quaver is already running", LogType.Runtime);
+            using (var mutex = new Mutex(false, "Global\\" + Guid))
+            {
+                if (!mutex.WaitOne(0, false))
+                {
+                    Logger.Error("Quaver is already running", LogType.Runtime);
 
-            //         // Send to running instance only if we have actual data to send
-            //         if (args.Length > 0)
-            //             SendToRunningInstanceIpc(args);
+                    // Send to running instance only if we have actual data to send
+                    if (args.Length > 0)
+                        SendToRunningInstanceIpc(args);
 
-            //         return;
-            //     }
+                    return;
+                }
 
-            //     Run();
-            //     return;
-            // }
+                Run();
+                return;
+            }
 
             // Uncomment this and comment the above mutex to allow multiple instances of Quaver to be run
-            Run();
+            // Run();
         }
 
         /// <summary>
@@ -118,14 +118,6 @@ namespace Quaver
             using (var game = new QuaverGame(new HotLoader("../../../../Quaver.Shared/")))
 #else
             using (var game = new QuaverGame()) {
-                AppDomain.CurrentDomain.TypeResolve += (sender, args) =>
-                {
-                    if (args.Name.Contains("MonoGame.Extended.BitmapFonts.BitmapFontReader")) {
-                        Console.WriteLine("here");
-                        return typeof(MonoGame.Extended.Content.ContentReaders.BitmapFontContentReader ).Assembly;
-                    }
-                    return null;
-                };
                 game.Graphics.GraphicsProfile = GraphicsProfile.HiDef;
                 game.Run();
             }
